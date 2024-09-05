@@ -126,15 +126,15 @@ class Sim:
         pose = gymapi.Transform()
         pose.p = gymapi.Vec3(0, 0, 1.2)
         pose.r = gymapi.Quat(0, 0, 0, 1)
-        table_handle = self.gym.create_actor(self.env, table_asset, pose, 'table', 0)
+        table_handle = self.gym.create_actor(self.env, table_asset, pose, 'table', 1)
         color = gymapi.Vec3(0.5, 0.5, 0.5)
         self.gym.set_rigid_body_color(self.env, table_handle, 0, gymapi.MESH_VISUAL_AND_COLLISION, color)
 
         # cube
         pose = gymapi.Transform()
-        pose.p = gymapi.Vec3(0, 0, 1.25)
+        pose.p = gymapi.Vec3(-0.3, 0, 1.25)
         pose.r = gymapi.Quat(0, 0, 0, 1)
-        cube_handle = self.gym.create_actor(self.env, cube_asset, pose, 'cube', 0)
+        cube_handle = self.gym.create_actor(self.env, cube_asset, pose, 'cube', 1)
         color = gymapi.Vec3(1, 0.5, 0.5)
         self.gym.set_rigid_body_color(self.env, cube_handle, 0, gymapi.MESH_VISUAL_AND_COLLISION, color)
 
@@ -254,7 +254,6 @@ class Sim:
 if __name__ == '__main__':
     teleoperator = VuerTeleop('inspire_hand.yml')
     simulator = Sim()
-
     try:
         while True:
             head_rmat, left_pose, right_pose, left_qpos, right_qpos = teleoperator.step()
